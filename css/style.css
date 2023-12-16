@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Neohellenic&family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-primaria);
+}
+
+:root{
+    --cor-active:#fff;
+
+    --cor-um:#f5deb3;
+    --cor-dois:#bea370;
+
+    --cor-dark-200: #291f1f;
+    --cor-dark-250: #000;
+
+    --fonte-primaria:'Poppins', sans-serif;
+    --fonte-secundaria:'GFS Neohellenic', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/*=================================================Header==============================================*/
+
+.navMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding:  1rem 10%;
+    background: var(--cor-um);
+    align-items: center;
+    box-shadow:0 5px 5px rgba(0, 0, 0, 0.25);
+    z-index: 99;
+}
+
+.navMenu h2{
+    font-size: 1.6em;
+    font-family: var(--fonte-secundaria);
+}
+
+.navMenu div{
+    display: flex;
+    
+}
+
+/*hiperlinks da nav*/
+.navBar a{
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-family: var(--fonte-primaria);
+    margin-left: 40px;
+    text-decoration: none;
+    margin-left: 2.5em;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-bottom: none;
+    transition: 0.5s;
+    user-select: none;
+}
+
+
+/*---------efeito hover ao selecionar-começo*/
+.navBar a::after{
+    left: 0;
+    bottom: -6px;
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    border-radius: 5px;
+    transform:  scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+.navBar a:hover::after {
+    transform:  scaleX(1);
+    transform-origin: left;
+}
+/*---------efeito hover ao selecionar-fim*/
+
+#check{
+    display: none;
+}
+
+/*posição menuBar*/
+.iconMenu{
+    bottom:10px;
+    right: 10px;
+    position: absolute;
+    font-size:1.8rem;
+    cursor: pointer;
+    display: none;
+}
+
+/*=================================================Main==============================================*/
+
+main{
+    background: url(../img/example.jpg);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size:cover ; /*alinha imahem*/
+    background-position: center; /*centralizaa*/
+}
+
+
+/*=================================================Footer==============================================*/
+
+footer{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#footer-content{
+    background-color: var(--cor-um);
+    display: grid;
+    grid-template-columns: repeat(4,1fr);/*4 colunas um para cada div*/
+    padding: 1rem 3.5rem;
+}
+
+.footer-contacts h2{
+    margin-bottom: 0.75rem ;
+}
+
+.social-media{
+    display: flex;
+    gap:2rem;
+    margin-top: 1.5rem;
+}
+
+.social-media .footer-link{
+    height: 2em;
+    width: 2em;
+}
+
+.footer-list{
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    list-style: none;
+}
+
+.footer-list .footer-link{
+    color: var(--cor-dark-200);
+    text-decoration: none;
+}
+
+.footer-list .footer-link:hover {
+    border-bottom: 1px solid var(--cor-dark-200);
+}
+
+#footer-subscribe{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+}
+
+#input-group{
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/*tira customização defalt do input*/
+#input-group input{
+    all:unset;
+
+}
+
+#input-group button{
+    cursor: pointer;
+}
+
+#input-group button:hover{
+    transform: scale(1.1);
+}
+
+#footer_copyright{
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-dois);
+    padding: 0.3em;
+}
+
+/*=================================================Responsive 768px==============================================*/
+
+@media (max-width: 768px) {
+
+    .iconMenu{
+        display: inline-flex;
+    }
+
+    #check:checked~.iconMenu #menu-icon{
+        display: none;
+    }
+
+    #check:checked~.iconMenu #close-icon{
+        display: block;
+    }
+
+    #check:checked~.navBar{
+        height: 17rem;
+    }
+
+    #close-icon{
+        display: none;
+    }
+
+    .navBar{
+        position: absolute;
+        top:100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(50px);  
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+        overflow: hidden; /*esconde as opções do navbar ao "checkar"*/
+        transition: 0.3s ease;
+    }
+
+    .navBar a{
+        display: block;/*deixa navbar vertical*/
+        font-size: 1.6em;
+        font-weight: 1.1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        /*transição suave*/
+        color: var(--cor-active);
+        transition: .3s ease;
+        transform: translateY(0);
+        
+    }
+    #check:checked~.navbar a{
+        /*transição suave*/
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+
+
+    #footer-content{
+
+        grid-template-columns: repeat(2,1fr);/*4 colunas um para cada div*/
+
+    }
+
+    /* 'retira' o efeito border-bottom*/
+    .navBar a::after{
+        background-color: transparent;
+    }
+}
+
+/*=================================================Responsive 434px==============================================*/
+
+@media (max-width: 434px) {
+    #footer-content{
+
+        grid-template-columns: repeat(1,1fr);/*4 colunas um para cada div*/
+
+    }
+}
